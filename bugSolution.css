@@ -1,0 +1,28 @@
+To avoid unexpected results with `calc()`, ensure that the parent container's dimensions are properly defined.  If you are using `calc()` with percentage values, make sure the parent element has a defined width or height.  Also, be mindful of how `calc()` interacts with `min-width` and `max-width`. 
+
+Consider using a more explicit approach, if possible, avoiding complex `calc()` expressions which may be harder to debug. Explicitly setting dimensions on your parent containers can often solve this problem.
+
+Example:
+Instead of:
+```css
+div {
+  width: calc(100% - 10px);
+}
+```
+Try:
+```css
+div {
+  width: 90%; /* or a fixed pixel value */
+  margin: 5px; /* to account for the 10px offset */
+}
+```
+Or if you absolutely need `calc()` ensure that the parent has defined dimensions:
+```css
+.parent {
+  width: 500px;
+}
+
+.child {
+  width: calc(100% - 10px);
+}
+```
